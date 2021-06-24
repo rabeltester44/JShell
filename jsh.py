@@ -149,10 +149,10 @@ def main():
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
     try:
-        s.bind(('127.0.0.1', 
+        s.bind(('6.tcp.ngrok.io:13897', 
               ))
     except socket.error as msg:
-        print("Can't grab 127.0.0.1:%s with bind: %s" % (port, msg))
+        print("Can't grab 6.tcp.ngrok.io:13897:%s with bind: %s" % (port, msg))
         quit()
 
     uprint(banner)
@@ -198,4 +198,4 @@ def main():
         main()
 
 
-main()
+
