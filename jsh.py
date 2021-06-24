@@ -29,7 +29,7 @@ exit, quit            Exit the JS shell'''
 
 
 parser = argparse.ArgumentParser(description='JSshell 3.1: javascript reverse shell')
-parser.add_argument('-p', help='local port number (default: 13897)', dest='port', default=13897)
+parser.add_argument('-p', help='local port number (default: 1332)', dest='port', default=1332)
 parser.add_argument('-s', help='local sorce address', dest='host', default='')
 parser.add_argument('-g', help='generate JS reverse shell payload', dest='gene', action='store_true')
 parser.add_argument('-c', help='command to execute after got shell', dest='command', default=str())
@@ -149,10 +149,10 @@ def main():
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
     try:
-        s.bind(('0.0.0.0', 
+        s.bind(('127.0.0.1', 
               ))
     except socket.error as msg:
-        print("Can't grab 0.0.0.0:%s with bind: %s" % (port, msg))
+        print("Can't grab 127.0.0.1:%s with bind: %s" % (port, msg))
         quit()
 
     uprint(banner)
